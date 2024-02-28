@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Time zone -show{% endblock %}
+
+{% block body %}
+    The timezone Europe/London has {{ offsetUTC }} minutes offset to UTC on given day at midnight.<br />
+    February in this year has {{ numberOfDaysInMonth }} days.<br />
+    Specified month ({{ monthNameByDate }}) has {{ daysInMonth }} days.
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Time zone form{% endblock %}
+
+{% block body %}
+        {{ form_start(formTimezone) }}
+<div class="form-control">
+    {{ form_label(formTimezone.date) }} {{ form_widget(formTimezone.date) }}
+    {{ form_errors(formTimezone.date) }}
+</div>
+
+    <div class="form-control">
+        {{ form_label(formTimezone.timezone) }} {{ form_widget(formTimezone.timezone) }}
+        {{ form_errors(formTimezone.timezone) }}
+    </div>
+
+    <div class="form-control">
+        {{ form_row(formTimezone.submit, { 'label': 'Send' }) }}
+    </div>
+        {{ form_end(formTimezone) }}
+{#    {{ form_start(formTimezone) }}#}
+{#    {{ form_widget(formTimezone) }}#}
+{#    {{ form_end(formTimezone) }}#}
+{% endblock %}
+{#{{ form_errors(form.dueDate) }}#}
