@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Domain\Post;
 
@@ -14,16 +15,17 @@ class PostManager
         $this->em = $em;
     }
 
-    public function addPost($title, $content)
+    public function addPost(string $title, string $content): void
     {
         $post = new Post();
         $post->setTitle($title);
         $post->setContent($content);
+
         $this->em->persist($post);
         $this->em->flush();
     }
 
-    public function findPost($id): Post
+    public function findPost(int $id): Post
     {
         $postRepository = $this->em->getRepository(Post::class);
 

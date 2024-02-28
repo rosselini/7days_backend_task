@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Validator\PostValidator;
 use Domain\Post\PostManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,6 +32,16 @@ class AddPostCommand extends Command
     {
         $title = $input->getArgument('title');
         $content = $input->getArgument('content');
+
+        if ($errors = PostValidator::validate($title, $content)) {
+            $output->writeln('<error>Validation error</error>');
+            foreach ($errors as $key => $values) {
+                foreach ($values as $value) {
+                    $output->writeln("<info>{$key}</info> {$value}");
+                }
+            }
+            return Command::FAILURE;
+        }
 
         $this->postManager->addPost($title, $content);
 
